@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <title>Handlebars</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="test.js"></script>
+</head>
+
+<body>
+
+    <script type="text/x-handlebars-template" id="test1-template">
+    <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+            {{{body}}}
+        </div>
+    </div>
+    </script>
+    <script type="text/x-handlebars-template" id="test2-template">
+    {{#each datas}}
+      <h1>{{subject}}</h1>
+      <div>
+        {{body}}
+      </div>
+    {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="test3-template">
+    <input type="text" placeholder="텍스트" value="1" disabled>
+    <div class="tab">
+        {{dContent}}
+    </div>
+    <h1>{{gContent}}</h1>
+    </script>
+    <script type="text/x-handlebars-template" id="test4-template">
+    <div class="entry">
+        <h1>.{{title.text}}</h1>
+        <h1>/{{title/text}}</h1>
+        <h1>this{{this.title.text}}</h1>
+        <h1>./{{./title.text}}</h1>
+        {{#each inner}}
+        <h1>inner{{../../title.text}}{{id}}</h1>
+        {{/each}}
+        <h1>{{{title.p}}}</h1>
+        <h1>{{title.p}}</h1>
+    </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="test5-template">
+    <div class="entry">
+        {{#each articles}}
+          <h1>{{subject}}</h1>
+          <div>
+            {{body}}
+          </div>
+        {{/each}}
+    </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="test6-template">
+    {{#each nav ~}}
+      <a href="{{url}}">
+        {{~#if test}}
+          {{~title}}
+        {{~^~}}
+          Empty
+        {{~/if~}}
+      </a>
+    {{~/each}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="test7-template">
+    <div class="entry">
+    <h1>{{title}}</h1>
+        {{#with author}}
+        <h2>By {{firstName}} {{lastName}}</h2>
+        {{/with}}
+    </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="test8-template">
+    <ul class="people_list">
+
+        {{#each people}}
+        <li>{{this}}</li>
+        {{/each}}
+
+        {{#each notData}}
+        <li>{{this}}</li>
+        {{else}}
+        <li>not Data</li>
+        {{/each}}
+
+        {{#each people}}
+        <li>{{@index}}: {{this}}</li>
+        {{/each}}
+
+        {{#each object}}
+        <li>{{@key}}: {{this}}</li>
+        {{/each}}
+
+    </ul>
+    </script>
+
+
+    <script type="text/x-handlebars-template" id="test9-template">
+        {{#if value}}
+            <div> value </div>
+        {{else}}
+            <div> not value </div>
+        {{/if}}
+        {{#if notData}}
+            <div> data  </div>
+        {{else}}
+            <div> notData </div>
+        {{/if}}
+        {{#unless notData}}
+            <div> data  </div>
+        {{else}}
+            <div> notData </div>
+        {{/unless}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="test10-template">
+        {{log "Look at me!"}}
+        <div>test10</div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="custom-template">
+        <div class="post">
+            <h1>By {{fullName author}}</h1>
+            <div class="body">{{body}}</div>
+            <h1>Comments</h1>
+            {{#each comments}}
+            <h2>By {{fullName author}}</h2>
+            <div class="body">{{body}}</div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="custom2-template">
+        <div class="post">
+            {{! only output this author names if an author exists }}
+            {{!-- only output this author names if an author exists --}}
+            <h1>By {{custom2 author body value=1 test=3 }}</h1>
+            <div class="body">{{body}}</div>
+            <h1>Comments</h1>
+        </div>
+    </script>
+
+    <h4>-test1-</h4>
+        <div id="test1"></div>
+    <h4>-test2-</h4>
+        <div id="test2"></div>
+    <h4>-test3-</h4>
+        <div id="test3"></div>
+    <h4>-test4-</h4>
+        <div id="test4"></div>
+    <h4>-test5-</h4>
+        <div id="test5"></div>
+    <h4>-test6-</h4>
+        <div id="test6"></div>
+    <h4>-test7-</h4>
+        <div id="test7"></div>
+    <h4>-test8-</h4>
+        <div id="test8"></div>
+    <h4>-test9-</h4>
+        <div id="test9"></div>
+    <h4>-test10-</h4>
+        <div id="test10"></div>
+    <h4>-custom-</h4>
+        <div id="custom"></div>
+    <h4>-custom2-</h4>
+        <div id="custom2"></div>
+
+</body>
+</html>
