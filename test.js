@@ -1,5 +1,3 @@
-
-
 ( function ( $, window, document, undefined) {
 
 
